@@ -55,7 +55,7 @@ angular.module('app')
 
       // angular translate
       $scope.lang = { isopen: false };
-      $scope.langs = {en:'English', de_DE:'German', it_IT:'Italian', zh_cn:'Chinese'};
+      $scope.langs = {de_DE:'Chinese', en:'English'};
       $scope.selectLang = $scope.langs[$translate.proposedLanguage()] || "Chinese";
       $scope.setLang = function(langKey, $event) {
         // set the current lang

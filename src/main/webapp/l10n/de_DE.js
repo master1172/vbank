@@ -1,24 +1,27 @@
 {
 
-"header" : {
+"header": {
   "navbar" : {
     "UPLOAD" : "Upload",
     "new" : {
-      "NEW" : "Neu",
-      "PROJECT" : "Projekte",
-      "TASK" : "Aufgabe",
-      "USER" : "Benutzer",
-      "EMAIL" : "E-Mail"
+      "NEW" : "待办事项",
+      "PROJECT" : "项目",
+      "TASK" : "任务",
+      "USER" : "用户",
+      "EMAIL" : "邮件"
     },
-    "NOTIFICATIONS" : "Benachrichtigungen"
+    "NOTIFICATIONS" : "提醒"
   }
 },
 "aside" : {
   "nav" : {
-    "HEADER" : "Navigation",
-    "DASHBOARD" : "Armaturenbrett",
-    "CALENDAR" : "Kalender",
-    "EMAIL" : "E-Mail",
+    "HEADER" : "导航",
+    "DASHBOARD" : "管理台",
+    "CALENDAR" : "工作日历",
+    "GANTTTASK" : "工作甘特图",
+    "LOGSEARCH" : "日志查询",
+    "KNOWLEDGE" : "业务知识库",
+    "EMAIL" : "邮箱",
     "WIDGETS" : "Widgets",
     "components" : {
       "COMPONENTS" : "Komponenten",

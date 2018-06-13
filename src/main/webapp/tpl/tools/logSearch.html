@@ -1,0 +1,167 @@
+<div class="bg-light lter b-b wrapper-md">
+
+  <section class="content-header">
+    <ol class="breadcrumb">
+      <li><h1 class="m-n font-thin h3">业务日志查询</h1></li>
+      <span class="text-muted m-l-sm pull-right">
+        <ol class="breadcrumb">
+            <div class="filters_wrapper" id="filters_wrapper">
+                <ul class="nav navbar-nav">
+                    <li><a href="" >系统维护</a></li>
+                    <li><a href="" >业务链路维护</a></li>
+                    <li><a href="" >过滤条件维护</a></li>
+                </ul>
+            </div>
+        </ol>
+      </span>
+    </ol>
+  </section>
+
+
+  <section class="content">
+    <div class="box box-default">
+      <!-- /.box-header -->
+      <div class="box-body">
+        <form role="form" th:action="@{searchLog}" method="post" id="searchForm">
+          <div class="row">
+            <div class="form-group">
+              <div class="row">
+                <div class="col-lg-2">
+                  <label>选择环境</label>
+                  <select class="form-control select2" style="width: 100%;" name="sciEnvId"  data-placeholder="...请选择..." required="required">
+                    <!--<option selected="selected" value="0">选择环境</option>-->
+                    <option></option>
+                    <option value="1">测试环境</option>
+                    <option value="2">灰度环境</option>
+                    <option value="3">生产环境</option>
+                  </select>
+                </div>
+                <div class="col-lg-2">
+                  <label>选择查询类型</label>
+                  <select class="form-control select2" style="width: 100%;" name="sciEnvId"  data-placeholder="...请选择..." required="required">
+                    <!--<option selected="selected" value="0">选择环境</option>-->
+                    <option></option>
+                    <option value="1">按系统查询</option>
+                    <option value="2">按业务查询</option>
+                  </select>
+                </div>
+                <div class="col-lg-3">
+                  <label>请选择业务</label>
+                  <select class="form-control select2" style="width: 100%;" name="sciBusinessId" data-placeholder="...请选择业务..." required="required">
+                    <!--<option selected="selected" value="0">暂时不能选择业务</option>-->
+                    <option  th:each="businessInfo : ${businessInfo}" th:value="${businessInfo.bsId}"
+                             th:text="${businessInfo.bussName }"></option>
+                  </select>
+                </div>
+                <div class="col-lg-3">
+                  <label>请选择系统</label>
+                  <select class="form-control select2" style="width: 100%;" name="sciSystemId" data-placeholder="...请选择系统..." required="required">
+                    <option></option>
+                    <!--<option selected="selected" value="0">请选择系统...</option>-->
+                    <option  th:each="systemInfo : ${systemInfo}" th:value="${systemInfo.systemID}"
+                             th:text="${systemInfo.appID }"></option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <!-- /.form-group -->
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-lg-2">
+                  <label>目标查询时间</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <i class="fa fa-calendar"></i>
+                    </div>
+                    <input type="text" class="form-control pull-right" name="sciSearchDate" id="datetimepicker"
+                           placeholder="...为空时，默认使用当前时间..." data-placeholder="...为空时，默认使用当前时间..."/>
+                  </div>
+                  <!-- /.input group -->
+                </div>
+                <div class="col-lg-2">
+                  <label>查询条件类型</label>
+                  <select class="form-control select2" style="width: 100%;" name="sciEnvId"  data-placeholder="...请选择..." required="required">
+                    <!--<option selected="selected" value="0">选择环境</option>-->
+                    <option></option>
+                    <option value="2">按TraceId查询</option>
+                    <option value="1">按RequestId查询</option>
+                    <option value="3">按OrderId查询</option>
+                    <option value="4">自定义Grep查询条件</option>
+                  </select>
+                </div>
+                <div class="col-lg-4">
+                  <label>请选择过滤条件</label>
+                  <select class="form-control select2" multiple="multiple" data-placeholder="...请选择过滤日志的条件..."
+                          style="width: 100%;" name="sciSearchFilter">
+                    <option value="1">Alabama</option>
+                    <option value="2">Alaska</option>
+                    <option>California</option>
+                    <option>Delaware</option>
+                    <option>Tennessee</option>
+                    <option>Texas</option>
+                    <option>Washington</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+
+              <div class="col-lg-8">
+                <div class="form-group">
+                  <label>输入查询条件</label>
+                  <input type="text" class="form-control" placeholder="...Enter ..." data-placeholder="...Enter ..."
+                         name="sciSearchKeyValue" required="required"/>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xs-2">
+              <button type="button" class="btn btn-primary btn-block btn-flat" onclick="searchButton()">提交查询</button>
+            </div>
+            <!-- /.form-group -->
+          </div>
+            <!-- /.row -->
+        </form>
+      </div>
+    </div>
+
+      <!-- /.box-body -->
+  </section>
+
+
+  <!-- /.content -->
+</div>
+
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      搜索的日志结果如下：
+    </div>
+    <div class="table-responsive">
+      <table ui-jq="dataTable" ui-options="{
+          sAjaxSource: 'vendor/jquery/datatables/datatable.json',
+          aoColumns: [
+            { mData: 'engine' },
+            { mData: 'browser' },
+            { mData: 'platform' },
+            { mData: 'version' },
+            { mData: 'grade' }
+          ]
+        }" class="table table-striped m-b-none">
+        <thead>
+          <tr>
+            <th  style="width:20%">Rendering engine</th>
+            <th  style="width:25%">Browser</th>
+            <th  style="width:25%">Platform(s)</th>
+            <th  style="width:15%">Engine version</th>
+            <th  style="width:15%">CSS grade</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

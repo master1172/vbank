@@ -18,6 +18,9 @@
     "HEADER" : "Navigation",
     "DASHBOARD" : "Dashboard",
     "CALENDAR" : "Calendar",
+    "GANTTTASK" : "Gantt",
+    "LOGSEARCH" : "Log Search",
+    "KNOWLEDGE" : "Knowledge",
     "EMAIL" : "Email",
     "WIDGETS" : "Widgets",
     "components" : {

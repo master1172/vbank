@@ -156,22 +156,22 @@
           <li class="dropdown">
             <a href="#" data-toggle="dropdown" class="dropdown-toggle">
               <i class="fa fa-fw fa-plus visible-xs-inline-block"></i>
-              <span translate="header.navbar.new.NEW">待办事项</span> <span class="caret"></span>
+              <span translate="header.navbar.new.NEW">NEW</span> <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="#" translate="header.navbar.new.PROJECT">项目</a></li>
+              <li><a href="#" translate="header.navbar.new.PROJECT">project</a></li>
               <li>
                 <a href>
                   <span class="badge bg-info pull-right">5</span>
-                  <span translate="header.navbar.new.TASK">任务</span>
+                  <span translate="header.navbar.new.TASK">task</span>
                 </a>
               </li>
-              <li><a href translate="header.navbar.new.USER">好友协办</a></li>
+              <li><a href translate="header.navbar.new.USER">user</a></li>
               <li class="divider"></li>
               <li>
                 <a href>
                   <span class="badge bg-danger pull-right">4</span>
-                  <span translate="header.navbar.new.EMAIL">邮件</span>
+                  <span translate="header.navbar.new.EMAIL">e-mail</span>
                 </a>
               </li>
             </ul>
@@ -414,6 +414,39 @@
 
               <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
                 <span translate="aside.nav.components.COMPONENTS">Components</span>
+              </li>
+              <li ng-class="{active:$state.includes('app.log_manage')}">
+                <a href class="auto">
+                  <span class="pull-right text-muted">
+                    <i class="fa fa-fw fa-angle-right text"></i>
+                    <i class="fa fa-fw fa-angle-down text-active"></i>
+                  </span>
+                  <b class="label bg-primary pull-right">2</b>
+                  <i class="glyphicon glyphicon-list"></i>
+                  <span translate="aside.nav.components.log_manage.TABLE">Log Manage</span>
+                </a>
+                <ul class="nav nav-sub dk">
+                  <li class="nav-sub-header">
+                    <a href>
+                      <span translate="aside.nav.components.log_manage.TABLE">Log Manage</span>
+                    </a>
+                  </li>
+                  <li ui-sref-active="active">
+                    <a ui-sref="app.table.static">
+                      <span translate="aside.nav.components.log_manage.TABLE_STATIC">Log Search</span>
+                    </a>
+                  </li>
+                  <li ui-sref-active="active">
+                    <a ui-sref="app.table.datatable">
+                      <span translate="aside.nav.components.log_manage.DATATABLE">System Info</span>
+                    </a>
+                  </li>
+                  <li ui-sref-active="active">
+                    <a ui-sref="app.table.footable">
+                      <span translate="aside.nav.components.log_manage.FOOTABLE">Business Link</span>
+                    </a>
+                  </li>
+                </ul>
               </li>
               <li>
                 <a href class="auto">      

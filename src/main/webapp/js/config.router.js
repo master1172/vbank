@@ -177,6 +177,7 @@ angular.module('app')
                       }]
                   }
               })
+
               // form
               .state('app.form', {
                   url: '/form',
@@ -362,6 +363,19 @@ angular.module('app')
                           )
                       }]
                   }
+              })
+
+              .state('app.gantt', {
+                  url: '/qa/gantt'
+              })
+
+              .state('app.logsearch', {
+                  url: '/qa/s',
+                  templateUrl: 'tpl/tools/logSearch.html'
+              })
+
+              .state('app.knowledge', {
+                  url: 'qa/knowledge'
               })
 
               // mail
